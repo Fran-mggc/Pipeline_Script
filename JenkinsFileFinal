@@ -6,13 +6,13 @@ pipeline {
     }
     stages {	
 		stage('Job01-git-mvn') {
-			triggers {
+				triggers {
 					pollSCM('* * * * 1-5')
 				}
 				steps {
-						git 'https://github.com/Fran-mggc/Spring3MVC.git'
-				bat 'mvn clean test'
-					}
+					git 'https://github.com/Fran-mggc/Spring3MVC.git'
+					bat 'mvn clean test'
+				}
 		}
 		stage('Descarga Git package') {
 				steps {               
