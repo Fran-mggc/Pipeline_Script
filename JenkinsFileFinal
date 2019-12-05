@@ -5,35 +5,35 @@ pipeline {
         jdk 'LocalJDK8'
     }
     stages {	
-	stage('Job01-git-mvn') {
-		triggers {
-        		pollSCM('* * * * 1-5')
-    		}
-        	steps {
-                	git 'https://github.com/Fran-mggc/Spring3MVC.git'
-			bat 'mvn clean test'
-                }
-        }
-	stage('Descarga Git package') {
-            steps {               
-                git 'https://github.com/Fran-mggc/Spring3MVC.git'
-                bat 'mvn clean package'
-                archiveArtifacts '**/*.war'                
-            }
-        }
-	stage('Sonar') {
-            steps {               
-                git 'https://github.com/Fran-mggc/Spring3MVC.git'
-                bat 'mvn clean package'
-                archiveArtifacts '**/*.war'                
-            }
-        }
-	stage('Deploy') {
-            steps {               
-                git 'https://github.com/Fran-mggc/Spring3MVC.git'
-                bat 'mvn clean package'
-                archiveArtifacts '**/*.war'                
-            }
-        }        
+		stage('Job01-git-mvn') {
+			triggers {
+					pollSCM('* * * * 1-5')
+				}
+				steps {
+						git 'https://github.com/Fran-mggc/Spring3MVC.git'
+				bat 'mvn clean test'
+					}
+		}
+		stage('Descarga Git package') {
+				steps {               
+					git 'https://github.com/Fran-mggc/Spring3MVC.git'
+					bat 'mvn clean package'
+					archiveArtifacts '**/*.war'                
+				}
+		}
+		stage('Sonar') {
+				steps {               
+					git 'https://github.com/Fran-mggc/Spring3MVC.git'
+					bat 'mvn clean package'
+					archiveArtifacts '**/*.war'                
+				}
+		}
+		stage('Deploy') {
+				steps {               
+					git 'https://github.com/Fran-mggc/Spring3MVC.git'
+					bat 'mvn clean package'
+					archiveArtifacts '**/*.war'                
+				}
+		}        
 	}
 }
