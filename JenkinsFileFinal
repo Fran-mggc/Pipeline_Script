@@ -22,10 +22,9 @@ pipeline {
 				}
 		}
 		stage('Sonar') {
-				steps {               
+				steps {				
 					git 'https://github.com/Fran-mggc/Spring3MVC.git'
-					bat 'mvn clean package'
-					archiveArtifacts '**/*.war'                
+                			bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.projectName=SpringSonarMVC'               
 				}
 		}
 		stage('Deploy') {
