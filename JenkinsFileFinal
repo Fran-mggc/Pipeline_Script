@@ -14,28 +14,26 @@ pipeline {
 			bat 'mvn clean test'
                 }
         }
-	
-        stage('Run Tests') {
-            parallel {
-                stage('Test On Windows') {
-                   /*agent {
-                        label "mock"
-                    }*/
-                    steps {
-			
-                        echo "Task1 on Parallel"
-                    }
-                    
-                }
-                stage('Test On Master') {
-                    /*agent {
-                        label "win"
-                    }*/
-                    steps {
-			    	
-				echo "Task2 on Parallel"
-			}
-                }
+	stage('Descarga Git package') {
+            steps {               
+                git 'https://github.com/Fran-mggc/Spring3MVC.git'
+                bat 'mvn clean package'
+                archiveArtifacts '**/*.war'                
             }
         }
-    }
+	stage('Sonar') {
+            steps {               
+                git 'https://github.com/Fran-mggc/Spring3MVC.git'
+                bat 'mvn clean package'
+                archiveArtifacts '**/*.war'                
+            }
+        }
+	stage('Deploy') {
+            steps {               
+                git 'https://github.com/Fran-mggc/Spring3MVC.git'
+                bat 'mvn clean package'
+                archiveArtifacts '**/*.war'                
+            }
+        }        
+	}
+}
