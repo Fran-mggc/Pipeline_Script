@@ -31,7 +31,7 @@ pipeline {
 				steps { 
 					copyArtifacts fingerprintArtifacts: true, projectName: 'EjercicioFinal', selector: specific(${BUILD_NUMBER})
 					//copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'EjercicioFinal', selector: workspace()
-					copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'EjercicioFinal', selector: lastWithArtifacts()
+					//copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'EjercicioFinal', selector: lastWithArtifacts()
 					deploy adapters: [tomcat8(credentialsId: 'd37b2846-f1e2-42ae-aa39-e1d3c6994fd6', path: '', url: 'http://localhost:8081')], contextPath: null, war: '**/*.war'            
 				}
 		}        
