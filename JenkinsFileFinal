@@ -5,7 +5,10 @@ pipeline {
         jdk 'LocalJDK8'
     }
     stages {	
-	stage('Job01-git-mvn') {	   
+	stage('Job01-git-mvn') {
+		triggers {
+        		pollSCM('* * * * 1-5')
+    		}
         	steps {
                 	git 'https://github.com/Fran-mggc/Spring3MVC.git'
 			bat 'mvn clean test'
